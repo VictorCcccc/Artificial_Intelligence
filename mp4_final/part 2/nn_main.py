@@ -10,7 +10,7 @@ def init_weights(d, dp):
 
 if __name__ == '__main__':
 
-    epchos = 50
+    epchos = 10
     print('---------------')
     print('The epchos is :',epchos)
     print('---------------')
@@ -53,7 +53,7 @@ if __name__ == '__main__':
     np.save('b4', b4)
     
     avg_class_rate, class_rate_per_class = test_nn(w1, w2, w3, w4, b1, b2, b3, b4, x_test, y_test, 10)
-    plt.show()
+#    plt.show()
 #    epcho = np.arange(50)
 #    plt.plot(epcho, losses)
     print('---------------')
