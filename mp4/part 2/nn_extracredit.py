@@ -4,6 +4,7 @@ Created on Sat Apr 20 10:40:25 2019
 
 @author: Victor
 """
+# Modified according to the kears documentation https://keras.io/getting-started/sequential-model-guide/
 
 
 from __future__ import absolute_import, division, print_function, unicode_literals
@@ -12,7 +13,6 @@ from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix
-from sklearn.utils.multiclass import unique_labels
 from tensorflow.keras.layers import Conv2D,MaxPooling2D,Flatten,Dense,Dropout
 
 x_train = np.load("data/x_train.npy")
@@ -54,7 +54,7 @@ model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
 
-model.fit(train_data, train_labels, validation_data=(eval_data, eval_labels), epochs=5)
+model.fit(train_data, train_labels, validation_data=(eval_data, eval_labels), epochs=20)
 
 test_loss, test_acc = model.evaluate(eval_data, eval_labels)
 
@@ -80,7 +80,7 @@ def plot_confusion_matrix(y_true, y_pred, classes,
     # Compute confusion matrix
     cm = confusion_matrix(y_true, y_pred)
     # Only use the labels that appear in the data
-    classes = classes[unique_labels(y_true, y_pred)]
+#    classes = classes[unique_labels(y_true, y_pred)]
     if normalize:
         cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
         print("Normalized confusion matrix")

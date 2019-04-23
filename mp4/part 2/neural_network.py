@@ -184,8 +184,8 @@ def cross_entropy(F, y):
     exp_F = np.exp(F)
     p = exp_F / np.sum(exp_F, axis=1, keepdims=True)
     y = y.astype(np.int)
-    correct_logprobs = -np.log(p[range(num_examples),y])
-    loss = np.sum(correct_logprobs)/num_examples
+    correction = -np.log(p[range(num_examples),y])
+    loss = np.sum(correction)/num_examples
     p[range(num_examples),y] -= 1
     dF = p / num_examples
     return loss, dF
